@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlxs2mfpohgtp"]
+
+[ext_resource type="Script" path="res://scripts/Assets/boolet.gd" id="1_mimp1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fguur"]
+
+[node name="Boolet" type="Area2D"]
+script = ExtResource("1_mimp1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 0.34)
+shape = SubResource("CapsuleShape2D_fguur")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

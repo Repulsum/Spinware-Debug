@@ -1,0 +1,193 @@
+[gd_scene load_steps=27 format=3 uid="uid://bbwpkh6mqrd2t"]
+
+[ext_resource type="Script" path="res://Scripts/Assets/map.gd" id="1_f0lxp"]
+[ext_resource type="Texture2D" uid="uid://du3mbv5vtydmu" path="res://Sprites/backgroundstill.png" id="1_lpy0d"]
+[ext_resource type="Script" path="res://Scripts/Assets/player_wheel.gd" id="3_blyt1"]
+[ext_resource type="Script" path="res://Scripts/Assets/characterControl.gd" id="4_0yc2w"]
+[ext_resource type="Texture2D" uid="uid://d2u4m2y5qsmb1" path="res://Sprites/wheel.png" id="4_lqndy"]
+[ext_resource type="Texture2D" uid="uid://bptj727cx4vqe" path="res://Sprites/holder.png" id="5_1k8sv"]
+[ext_resource type="PackedScene" uid="uid://dge67pf4o56p0" path="res://Scenes/Assets/playerboolet.tscn" id="5_8nk6n"]
+[ext_resource type="Texture2D" uid="uid://cp11l8yd7bwl3" path="res://Sprites/phage-sheet.png" id="8_sq5mf"]
+[ext_resource type="Script" path="res://Scripts/Assets/scanioAi.gd" id="9_4nf2y"]
+[ext_resource type="Texture2D" uid="uid://dou782shrdghg" path="res://Sprites/scaniohappy.png" id="9_qgfup"]
+[ext_resource type="Texture2D" uid="uid://df6jly26nea3e" path="res://Sprites/scaniohurt.png" id="11_v88ro"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5masl"]
+radius = 49.8402
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evdlw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnrbg"]
+atlas = ExtResource("8_sq5mf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy4tw"]
+atlas = ExtResource("8_sq5mf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j5bb"]
+atlas = ExtResource("8_sq5mf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ypfk"]
+atlas = ExtResource("8_sq5mf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpelk"]
+atlas = ExtResource("8_sq5mf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohfw1"]
+atlas = ExtResource("8_sq5mf")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uftlx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnrbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy4tw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j5bb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ypfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpelk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohfw1")
+}],
+"loop": true,
+"name": &"phage",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iue1f"]
+atlas = ExtResource("9_qgfup")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61ydo"]
+atlas = ExtResource("9_qgfup")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajgvc"]
+atlas = ExtResource("9_qgfup")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88ukp"]
+atlas = ExtResource("9_qgfup")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjm60"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iue1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61ydo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajgvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88ukp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_v88ro")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e5v0n"]
+radius = 248.102
+
+[node name="Zone" type="Node2D"]
+script = ExtResource("1_f0lxp")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_times = 2
+
+[node name="Background" type="Sprite2D" parent="Parallax2D"]
+texture = ExtResource("1_lpy0d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Wheel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.643305, 0.643305)
+script = ExtResource("3_blyt1")
+
+[node name="Area2D" type="Area2D" parent="Wheel"]
+
+[node name="Wheel" type="Sprite2D" parent="Wheel/Area2D"]
+texture = ExtResource("4_lqndy")
+
+[node name="Handle" type="Sprite2D" parent="Wheel/Area2D"]
+position = Vector2(399, 0)
+scale = Vector2(1.29506, 1.29506)
+texture = ExtResource("5_1k8sv")
+
+[node name="GrabZone" type="CollisionShape2D" parent="Wheel/Area2D"]
+position = Vector2(399.499, 0)
+shape = SubResource("CircleShape2D_5masl")
+
+[node name="Phage" type="CharacterBody2D" parent="Wheel/Area2D"]
+motion_mode = 1
+script = ExtResource("4_0yc2w")
+Bullet = ExtResource("5_8nk6n")
+speed = 200
+gun_cooldown = 2.0
+life = 100
+
+[node name="ProyectileCollision" type="CollisionShape2D" parent="Wheel/Area2D/Phage"]
+position = Vector2(0, 404)
+scale = Vector2(1.46969, 2.21375)
+shape = SubResource("CapsuleShape2D_evdlw")
+
+[node name="ShootTimer" type="Timer" parent="Wheel/Area2D/Phage"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="Wheel/Area2D/Phage"]
+position = Vector2(0, 353)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wheel/Area2D/Phage"]
+position = Vector2(2.21753e-12, 393.281)
+rotation = 3.14159
+scale = Vector2(1.46426, 1.46426)
+sprite_frames = SubResource("SpriteFrames_uftlx")
+animation = &"phage"
+autoplay = "phage"
+frame_progress = 0.0541787
+
+[node name="Scanio" type="CharacterBody2D" parent="."]
+scale = Vector2(0.471855, 0.471855)
+motion_mode = 1
+script = ExtResource("9_4nf2y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Scanio"]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_wjm60")
+autoplay = "default"
+
+[node name="BooletCollision" type="CollisionShape2D" parent="Scanio"]
+shape = SubResource("CircleShape2D_e5v0n")
+
+[connection signal="input_event" from="Wheel/Area2D" to="Wheel" method="_on_area_2d_input_event"]
+[connection signal="shoot" from="Wheel/Area2D/Phage" to="." method="_on_phage_shoot"]
